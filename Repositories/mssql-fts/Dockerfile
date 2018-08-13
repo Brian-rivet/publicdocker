@@ -23,13 +23,16 @@ RUN export GCSFUSE_REPO=gcsfuse-xenial && \
 
 RUN apt-get update && apt-get install -y gcsfuse
 
+# A directory to hold gcsfuse mount for backups
+RUN mkdir /mnt/sqlbackup
+
 # Install SQL Server which a prerequisite for the optional packages below.
-RUN apt-get install -y mssql-server
+RUN apt-get update && apt-get install -y mssql-server --fix-missing
 
 # Install optional packages.  Comment out the ones you don't need
 #RUN apt-get install -y mssql-server-agent - The agent is included in the mssql-server package starting from 2017 CU4 and beyond.
-RUN apt-get install -y mssql-server-ha
-RUN apt-get install -y mssql-server-fts
+RUN apt-get update && apt-get install -y mssql-server-ha
+RUN apt-get update && apt-get install -y mssql-server-fts
 
 # Set volume mount points
 VOLUME /var/opt/mssql/data
