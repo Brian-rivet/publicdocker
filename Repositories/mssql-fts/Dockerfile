@@ -25,13 +25,5 @@ RUN apt-get update && \
     # apt-get install -y mssql-server-fts && \
     # apt-get install -y mssql-tools && \
 
-
-# A directory to hold gcsfuse mount for backups
-RUN mkdir /var/opt/mssql/backups
-
-# Set volume mount points
-VOLUME /var/opt/mssql/data
-VOLUME /var/opt/mssql/backups
-
 # Run SQL Server process
 CMD /opt/mssql/bin/sqlservr
