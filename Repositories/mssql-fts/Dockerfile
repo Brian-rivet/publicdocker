@@ -20,32 +20,18 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 # Install SQL Server which a prerequisite for the optional packages below.
 # Install optional packages.  Comment out the ones you don't need
 RUN apt-get update && \
-    apt-get install -y mssql-server mssql-server-ha mssql-server-fts mssql-tools unixodbc-dev 
+    apt-get install -y mssql-server mssql-server-ha mssql-server-fts mssql-tools 
     # apt-get install -y mssql-server-ha && \
     # apt-get install -y mssql-server-fts && \
     # apt-get install -y mssql-tools && \
 
 
-# Google Cloud APT key
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-
-# Install Google Cloud SDK
-RUN export CLOUD_SDK_REPO="cloud-sdk-xenial" && \
-    echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-    apt-get update && apt-get install -y google-cloud-sdk kubectl
-
-# GCSFuse used for backups to Google Cloud Storage
-# https://github.com/GoogleCloudPlatform/gcsfuse/blob/master/docs/installing.md
-RUN export GCSFUSE_REPO="gcsfuse-xenial" && \
-    echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | tee /etc/apt/sources.list.d/gcsfuse.list && \
-    apt-get update && apt-get install -y gcsfuse
-
 # A directory to hold gcsfuse mount for backups
-RUN mkdir /mnt/sqlbackup
+RUN mkdir /var/opt/mssql/backups
 
 # Set volume mount points
 VOLUME /var/opt/mssql/data
-VOLUME /var/backups
+VOLUME /var/opt/mssql/backups
 
 # Run SQL Server process
 CMD /opt/mssql/bin/sqlservr
