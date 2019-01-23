@@ -3,7 +3,7 @@
 # GitRepo: https://github.com/Microsoft/mssql-docker
 
 # Base: sqlserver 2019 preview
-FROM mcr.microsoft.com/mssql/server:2019-CTP2.2-ubuntu
+FROM mcr.microsoft.com/mssql/server:vNext-CTP2.0-ubuntu
 ENV ACCEPT_EULA=Y
 ENV MSSQL_SA_PASSWORD=<1qazXSW@>
 ENV MSSQL_RPC_PORT=135
