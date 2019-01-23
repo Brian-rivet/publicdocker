@@ -12,18 +12,18 @@ ENV MSSQL_DTC_TCP_PORT=51000
 #Install curl since it is needed to get repo config
 # Get official Microsoft repository configuration
 
-RUN     apt-get update && apt-get install -y --no-install-recommends apt-utils && \
-	apt-get install -y curl apt-transport-https && \
-    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-preview.list | tee /etc/apt/sources.list.d/mssql-server.list && \
-    apt-get update
+#RUN     apt-get update && apt-get install -y --no-install-recommends apt-utils && \
+#	apt-get install -y curl apt-transport-https && \
+#    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+#    curl https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-preview.list | tee /etc/apt/sources.list.d/mssql-server.list && \
+#    apt-get update
 
 
 # Install SQL Server which a prerequisite for the optional packages below.
 # Install optional packages.  Comment out the ones you don't need
 
-RUN apt-get update && \
-    apt-get install -y mssql-server-fts mssql-tools 
+#RUN apt-get update && \
+#    apt-get install -y mssql-server-fts mssql-tools 
 
 
 
