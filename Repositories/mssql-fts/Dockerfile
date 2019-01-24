@@ -12,7 +12,6 @@ ENV MSSQL_DTC_TCP_PORT=51000
 #Install curl since it is needed to get repo config
 # Get official Microsoft repository configuration
 RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get install -y --no-install-recommends apt-utils && \
     apt-get install -y curl apt-transport-https && \
     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-preview.list | tee /etc/apt/sources.list.d/mssql-server.list && \
