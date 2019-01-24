@@ -21,7 +21,8 @@ ENV MSSQL_DTC_TCP_PORT=51000
 
 # Install SQL Server which a prerequisite for the optional packages below.
 # Install optional packages.  Comment out the ones you don't need
-
+RUN apt-get update && \
+    apt-get install -y mssql-server-fts
 #RUN apt-get update && \
 #    apt-get install -y mssql-server-fts mssql-tools 
 
